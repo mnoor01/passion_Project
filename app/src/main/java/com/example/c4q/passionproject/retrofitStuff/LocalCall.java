@@ -1,7 +1,8 @@
 package com.example.c4q.passionproject.retrofitStuff;
 
-import com.example.c4q.passionproject.models.Election;
-import com.example.c4q.passionproject.models.Parent.RepModel;
+import com.example.c4q.passionproject.models.elections.ElectionResponse;
+import com.example.c4q.passionproject.models.representatives.RepResponse;
+import com.example.c4q.passionproject.models.voterinfo.VoterResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -14,8 +15,23 @@ import retrofit2.http.Query;
 
 public interface LocalCall {
     @GET("civicinfo/v2/voterinfo")
-    Call<Election> getElection(@Header("Authorization") String API_KEY, @Query("state") String state,@Query("city") String city, @Query("electionId") String electionId);
+    Call<ElectionResponse> getElection(
+            @Header("Authorization") String API_KEY,
+            @Query("state") String state,
+            @Query("city") String city,
+            @Query("electionId") String electionId);
 
     @GET("civicinfo/v2/elections")
-    Call<RepModel> getReps(@Header("Authorization") String API_KEY, @Query("state") String state,@Query("city") String city, @Query("electionId") String electionId);
+    Call<RepResponse> getReps(
+            @Header("Authorization") String API_KEY,
+            @Query("state") String state,
+            @Query("city") String city,
+            @Query("electionId") String electionId);
+    @GET("civicinfo/v2/elections")
+    Call<VoterResponse> getVoterInfo(
+            @Header("Authorization") String API_KEY,
+            @Query("state") String state,
+            @Query("city") String city,
+            @Query("electionId") String electionId);
 }
+

@@ -1,17 +1,11 @@
 package com.example.c4q.passionproject.constants;
 
-import com.example.c4q.passionproject.models.Election;
-
-import retrofit2.Call;
-import retrofit2.http.GET;
-import retrofit2.http.Header;
-
 /**
  * Created by c4q on 5/5/18.
  */
 
 public class ApiKey {
-    public static final String API_KEY="AIzaSyCPpH5ggI9cTKzAlkNx4GBf499E0BjIi58";
+    public static final String API_KEY = "AIzaSyCPpH5ggI9cTKzAlkNx4GBf499E0BjIi58";
 
 
 }

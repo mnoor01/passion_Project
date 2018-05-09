@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 public class MyPagerAdapter extends FragmentPagerAdapter {
     private static int NUM_ITEMS = 2;
+
     public MyPagerAdapter(FragmentManager fm) {
         super(fm);
     }
@@ -26,6 +27,6 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return "page"+ position;
+        return "page" + position;
     }
 }
