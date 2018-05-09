@@ -7,6 +7,7 @@ import android.widget.TableLayout;
 import com.example.c4q.passionproject.MVPController.AlertDialogFragment;
 
 public class MainActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
