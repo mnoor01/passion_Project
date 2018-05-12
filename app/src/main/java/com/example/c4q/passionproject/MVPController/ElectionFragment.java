@@ -1,7 +1,8 @@
 package com.example.c4q.passionproject.mvpcontroller;
 
 
-import android.app.Fragment;
+import android.content.Context;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,11 @@ import com.example.c4q.passionproject.R;
  * A simple {@link Fragment} subclass.
  */
 public class ElectionFragment extends Fragment {
+    private int[] image_resources={R.layout.fragment_election,R.layout.fragment_local_rep};
+    private Context context;
+    private  LayoutInflater layoutInflater;
+
+
 
 
     public ElectionFragment() {
