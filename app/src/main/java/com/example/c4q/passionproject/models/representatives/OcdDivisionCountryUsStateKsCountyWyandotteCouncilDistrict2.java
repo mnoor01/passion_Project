@@ -1,9 +1,7 @@
 package com.example.c4q.passionproject.models.representatives;
 
-import javax.annotation.Generated;
 import com.google.gson.annotations.SerializedName;
 
-@Generated("com.robohorse.robopojogenerator")
 public class OcdDivisionCountryUsStateKsCountyWyandotteCouncilDistrict2{
 
 	@SerializedName("name")

@@ -24,11 +24,45 @@ public class MainActivity extends AppCompatActivity {
         MyPagerAdapter myPagerAdapter= new MyPagerAdapter(getSupportFragmentManager(),this);
         viewPager.setAdapter(myPagerAdapter);
         tabLayout= findViewById(R.id.sliding_tabs);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        viewPager.setOffscreenPageLimit(2);
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_home_black_24dp));
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_launcher_foreground));
 //        tabLayout.addTab();
         tabLayout.setupWithViewPager(viewPager);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                int currentPosition=tab.getPosition();
+                viewPager.setCurrentItem(tab.getPosition());
+                switch (currentPosition){
+                    case 0:
+                        setActionBarTitle("election");
+                        break;
+                    case 1:
+                        setActionBarTitle("localRep");
+                        break;
+
+                }
 
 
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+
+    }
+    public void setActionBarTitle(String title) {
+        getSupportActionBar().setTitle(title);
+        getSupportActionBar().setBackgroundDrawable(getDrawable(R.drawable.ic_home_black_24dp));
     }
 }
