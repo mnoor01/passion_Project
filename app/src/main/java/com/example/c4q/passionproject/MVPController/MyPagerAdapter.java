@@ -1,4 +1,4 @@
-package com.example.c4q.passionproject.mvpcontroller;
+package com.example.c4q.passionproject.MVPController;
 
 
 
@@ -17,7 +17,7 @@ import android.view.ViewGroup;
 
 import com.example.c4q.passionproject.R;
 import com.example.c4q.passionproject.models.voterinfo.Election;
-import com.example.c4q.passionproject.mvpcontroller.ElectionFragment;
+import com.example.c4q.passionproject.MVPController.ElectionFragment;
 
 /**
  * Created by c4q on 5/9/18.
@@ -43,13 +43,16 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
             case 1:
                 LocalRepFragment localRepFragment= new LocalRepFragment();
                 return localRepFragment;
+            case 2:
+                VoterInfoFragment voterInfoFragment= new VoterInfoFragment();
+                return voterInfoFragment;
         }
         return null;
     }
 
     @Override
     public int getCount() {
-        return 2;
+        return 3;
     }
 
     @Nullable
@@ -60,6 +63,8 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
                 return context.getString(R.string.elections);
             case 1:
                 return context.getString(R.string.local_representatives);
+            case 2:
+                return context.getString(R.string.vinfo);
 
         }
         return null;

@@ -2,20 +2,20 @@ package com.example.c4q.passionproject.MVPController;
 
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v4.app.Fragment;
 
 import com.example.c4q.passionproject.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class LocalRepFragment extends Fragment {
+public class VoterInfoFragment extends Fragment {
 
 
-    public LocalRepFragment() {
+    public VoterInfoFragment() {
         // Required empty public constructor
     }
 
@@ -24,7 +24,7 @@ public class LocalRepFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_local_rep, container, false);
+        return inflater.inflate(R.layout.fragment_voter_info, container, false);
     }
 
 }

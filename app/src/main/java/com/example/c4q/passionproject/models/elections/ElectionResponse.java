@@ -6,10 +6,8 @@ import java.util.List;
 
 public class ElectionResponse{
 
-	@SerializedName("kind")
 	private String kind;
 
-	@SerializedName("elections")
 	private List<ElectionsItem> elections;
 
 	public void setKind(String kind){

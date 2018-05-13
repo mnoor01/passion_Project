@@ -1,4 +1,4 @@
-package com.example.c4q.passionproject.mvpcontroller;
+package com.example.c4q.passionproject.MVPController;
 
 
 import android.content.Context;
