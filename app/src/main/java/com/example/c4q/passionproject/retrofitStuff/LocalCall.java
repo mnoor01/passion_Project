@@ -14,24 +14,27 @@ import retrofit2.http.Query;
  */
 
 public interface LocalCall {
-    @GET("civicinfo/v2/voterinfo")
+    @GET("elections")
     Call<ElectionResponse> getElection(
             @Header("Authorization") String API_KEY,
+            @Query("address") String address,
             @Query("state") String state,
             @Query("city") String city,
-            @Query("electionId") String electionId);
+            @Query("electionId") int electionId);
 
-    @GET("civicinfo/v2/elections")
+    @GET("representatives")
     Call<RepResponse> getReps(
             @Header("Authorization") String API_KEY,
+            @Query("address") String address,
             @Query("state") String state,
             @Query("city") String city,
-            @Query("electionId") String electionId);
-    @GET("civicinfo/v2/elections")
+            @Query("electionId") int electionId);
+    @GET("voterinfo")
     Call<VoterResponse> getVoterInfo(
             @Header("Authorization") String API_KEY,
+            @Query("address") String address,
             @Query("state") String state,
             @Query("city") String city,
-            @Query("electionId") String electionId);
+            @Query("electionId") int electionId);
 }
 

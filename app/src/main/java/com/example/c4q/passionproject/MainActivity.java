@@ -21,11 +21,11 @@ public class MainActivity extends AppCompatActivity {
         AlertDialogFragment alertDialogFragment = new AlertDialogFragment();
         alertDialogFragment.show(getFragmentManager(), "nevne");
         viewPager=findViewById(R.id.main_view_pager);
+        tabLayout= findViewById(R.id.sliding_tabs);
         MyPagerAdapter myPagerAdapter= new MyPagerAdapter(getSupportFragmentManager(),this);
         viewPager.setAdapter(myPagerAdapter);
-        tabLayout= findViewById(R.id.sliding_tabs);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        viewPager.setOffscreenPageLimit(3);
+//        viewPager.setOffscreenPageLimit(3);
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.elections_icon));
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.congree_icon));
         tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.info_icon));
@@ -70,6 +70,5 @@ public class MainActivity extends AppCompatActivity {
     }
     public void setActionBarTitle(String title) {
         getSupportActionBar().setTitle(title);
-
     }
 }
