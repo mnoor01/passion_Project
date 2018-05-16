@@ -1,5 +1,9 @@
 apply plugin: 'com.android.application'
 
+ext{
+    room_version="1.1.0"
+}
+
 android {
     compileSdkVersion 27
     defaultConfig {
@@ -44,6 +48,8 @@ dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-annotations:2.8.9'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.8.9'
     //Database stuff
+    implementation "android.arch.persistence.room:runtime:$room_version"
+    annotationProcessor "android.arch.persistence.room:compiler:$room_version"
 
 
 

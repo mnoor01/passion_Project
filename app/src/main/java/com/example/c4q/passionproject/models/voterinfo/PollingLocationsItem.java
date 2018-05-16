@@ -1,10 +1,15 @@
 package com.example.c4q.passionproject.models.voterinfo;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
-
+@Entity(tableName = "pollingTable")
 public class PollingLocationsItem{
+	@PrimaryKey(autoGenerate = true)
+	private long id;
 
 	@SerializedName("address")
 	private Address address;

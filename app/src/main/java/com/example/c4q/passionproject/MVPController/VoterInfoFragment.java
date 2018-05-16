@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,7 @@ import com.example.c4q.passionproject.models.voterinfo.PollingLocationsItem;
 import com.example.c4q.passionproject.models.voterinfo.VoterResponse;
 import com.example.c4q.passionproject.retrofitStuff.LocalCall;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -25,6 +27,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,7 +41,7 @@ public class VoterInfoFragment extends Fragment {
     private EditText eIdInput;
     private TextView electionDay;
     private Button submitButton;
-    private List<PollingLocationsItem> pollingLocationsItems;
+    private List<PollingLocationsItem> pollingLocationsItems=new ArrayList<>();
 
 
     public VoterInfoFragment() {
@@ -55,11 +59,11 @@ public class VoterInfoFragment extends Fragment {
         eIdInput=rootView.findViewById(R.id.electionId);
         electionDay=rootView.findViewById(R.id.electionDay);
         submitButton=rootView.findViewById(R.id.submitButton);
+        electionDay=rootView.findViewById(R.id.electionDay);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 setUpRetro(ApiKey.API_KEY,addressInput.getText().toString(),stateInput.getText().toString(),cityInput.getText().toString(),Integer.parseInt(eIdInput.getText().toString()));
-
             }
         });
         // Inflate the layout for this fragment
@@ -77,11 +81,14 @@ public class VoterInfoFragment extends Fragment {
         Retrofit retrofit= new Retrofit.Builder().baseUrl("https://www.googleapis.com/civicinfo/v2/")
                 .addConverterFactory(GsonConverterFactory.create()).build();
         LocalCall service= retrofit.create(LocalCall.class);
-        Call<VoterResponse> voterInfo= service.getVoterInfo(ApiKey.API_KEY,address,state,city,id);
+        Call<VoterResponse> voterInfo= service.getVoterInfo(key,address,id);
+        Log.d(TAG, "setUpRetro: " + voterInfo.request());
         voterInfo.enqueue(new Callback<VoterResponse>() {
             @Override
             public void onResponse(Call<VoterResponse> call, Response<VoterResponse> response) {
                 pollingLocationsItems=response.body().getPollingLocations();
+                electionDay.setText(pollingLocationsItems.get(0).getAddress().getLocationName());
+
 
             }
 
