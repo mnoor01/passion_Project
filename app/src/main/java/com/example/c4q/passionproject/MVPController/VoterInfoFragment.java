@@ -1,6 +1,7 @@
 package com.example.c4q.passionproject.MVPController;
 
 
+import android.arch.persistence.room.Room;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.c4q.passionproject.R;
 import com.example.c4q.passionproject.constants.ApiKey;
+import com.example.c4q.passionproject.database.AppDatabase;
 import com.example.c4q.passionproject.models.voterinfo.PollingLocationsItem;
 import com.example.c4q.passionproject.models.voterinfo.VoterResponse;
 import com.example.c4q.passionproject.retrofitStuff.LocalCall;
@@ -41,7 +43,6 @@ public class VoterInfoFragment extends Fragment {
     private EditText eIdInput;
     private TextView electionDay;
     private Button submitButton;
-    private List<PollingLocationsItem> pollingLocationsItems=new ArrayList<>();
 
 
     public VoterInfoFragment() {
@@ -52,18 +53,18 @@ public class VoterInfoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        rootView=inflater.inflate(R.layout.fragment_voter_info, container, false);
-        addressInput=rootView.findViewById(R.id.addressinput);
-        cityInput=rootView.findViewById(R.id.cityInput);
-        stateInput=rootView.findViewById(R.id.stateInput);
-        eIdInput=rootView.findViewById(R.id.electionId);
-        electionDay=rootView.findViewById(R.id.electionDay);
-        submitButton=rootView.findViewById(R.id.submitButton);
-        electionDay=rootView.findViewById(R.id.electionDay);
+        rootView = inflater.inflate(R.layout.fragment_voter_info, container, false);
+        addressInput = rootView.findViewById(R.id.addressinput);
+        cityInput = rootView.findViewById(R.id.cityInput);
+        stateInput = rootView.findViewById(R.id.stateInput);
+        eIdInput = rootView.findViewById(R.id.electionId);
+        electionDay = rootView.findViewById(R.id.electionDay);
+        submitButton = rootView.findViewById(R.id.submitButton);
+        electionDay = rootView.findViewById(R.id.electionDay);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setUpRetro(ApiKey.API_KEY,addressInput.getText().toString(),stateInput.getText().toString(),cityInput.getText().toString(),Integer.parseInt(eIdInput.getText().toString()));
+                setUpRetro(ApiKey.API_KEY, addressInput.getText().toString(), stateInput.getText().toString(), cityInput.getText().toString(), Integer.parseInt(eIdInput.getText().toString()));
             }
         });
         // Inflate the layout for this fragment
@@ -77,17 +78,37 @@ public class VoterInfoFragment extends Fragment {
 
     }
 
-    public void setUpRetro(String key, String address, String state, String city, int id){
-        Retrofit retrofit= new Retrofit.Builder().baseUrl("https://www.googleapis.com/civicinfo/v2/")
+    public void setUpRetro(String key, String address, String state, String city, int id) {
+        Retrofit retrofit = new Retrofit.Builder().baseUrl("https://www.googleapis.com/civicinfo/v2/")
                 .addConverterFactory(GsonConverterFactory.create()).build();
-        LocalCall service= retrofit.create(LocalCall.class);
-        Call<VoterResponse> voterInfo= service.getVoterInfo(key,address,id);
+        LocalCall service = retrofit.create(LocalCall.class);
+        Call<VoterResponse> voterInfo = service.getVoterInfo(key, address, id);
         Log.d(TAG, "setUpRetro: " + voterInfo.request());
         voterInfo.enqueue(new Callback<VoterResponse>() {
             @Override
             public void onResponse(Call<VoterResponse> call, Response<VoterResponse> response) {
-                pollingLocationsItems=response.body().getPollingLocations();
+                final List<PollingLocationsItem> pollingLocationsItems;
+
+                pollingLocationsItems = response.body().getPollingLocations();
                 electionDay.setText(pollingLocationsItems.get(0).getAddress().getLocationName());
+
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        AppDatabase db = Room.databaseBuilder(rootView.getContext(), AppDatabase.class, "PassionDb").build();
+                        db.pollingDao().insertPollingSites(pollingLocationsItems);
+
+                    }
+                }).start();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        AppDatabase db = Room.databaseBuilder(rootView.getContext(), AppDatabase.class, "PassionDb").build();
+                        List<PollingLocationsItem> locationsItems = db.pollingDao().loadAll();
+                        Log.d(TAG, "run: "+ locationsItems.size());
+
+                    }
+                }).start();
 
 
             }

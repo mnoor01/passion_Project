@@ -11,6 +11,14 @@ public class PollingLocationsItem{
 	@PrimaryKey(autoGenerate = true)
 	private long id;
 
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
 	@SerializedName("address")
 	private Address address;
 
