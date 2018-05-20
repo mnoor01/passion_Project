@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +21,7 @@ import com.example.c4q.passionproject.constants.ApiKey;
 import com.example.c4q.passionproject.database.AppDatabase;
 import com.example.c4q.passionproject.models.voterinfo.PollingLocationsItem;
 import com.example.c4q.passionproject.models.voterinfo.VoterResponse;
+import com.example.c4q.passionproject.recyclerviewstuff.CitizenAdapter;
 import com.example.c4q.passionproject.retrofitStuff.LocalCall;
 
 import java.util.ArrayList;
@@ -41,9 +44,9 @@ public class VoterInfoFragment extends Fragment {
     private EditText stateInput;
     private EditText cityInput;
     private EditText eIdInput;
-    private TextView electionDay;
+    private RecyclerView electionDay;
     private Button submitButton;
-
+    private CitizenAdapter adapter;
 
     public VoterInfoFragment() {
         // Required empty public constructor
@@ -90,7 +93,12 @@ public class VoterInfoFragment extends Fragment {
                 final List<PollingLocationsItem> pollingLocationsItems;
 
                 pollingLocationsItems = response.body().getPollingLocations();
-                electionDay.setText(pollingLocationsItems.get(0).getAddress().getLocationName());
+                RecyclerView recyclerView=rootView.findViewById(R.id.electionDay);
+                adapter= new CitizenAdapter(pollingLocationsItems);
+                LinearLayoutManager linearLayoutManager= new LinearLayoutManager(rootView.getContext());
+                recyclerView.setAdapter(adapter);
+                recyclerView.setLayoutManager(linearLayoutManager);
+
 
                 new Thread(new Runnable() {
                     @Override
@@ -122,6 +130,8 @@ public class VoterInfoFragment extends Fragment {
 
 
     }
+
+
 
 
 }
