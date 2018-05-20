@@ -14,6 +14,11 @@ import java.util.List;
 
 public class ElectionAdapter extends RecyclerView.Adapter<ElectionViewholder> {
     private List<ElectionsItem> electionsItemList= new ArrayList<>();
+
+    public ElectionAdapter(List<ElectionsItem> electionsItemList) {
+        this.electionsItemList = electionsItemList;
+    }
+
     @NonNull
     @Override
     public ElectionViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

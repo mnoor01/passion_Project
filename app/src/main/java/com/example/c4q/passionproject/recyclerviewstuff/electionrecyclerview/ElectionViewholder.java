@@ -18,9 +18,9 @@ class ElectionViewholder extends RecyclerView.ViewHolder {
     private TextView electionId;
     public ElectionViewholder(View itemView) {
         super(itemView);
-        electionName=itemView.findViewById(R.id.name);
-        electionDay=itemView.findViewById(R.id.electionDay);
-        electionId=itemView.findViewById(R.id.electionId);
+        electionName=itemView.findViewById(R.id.electionName);
+        electionDay=itemView.findViewById(R.id.electionDayItem);
+        electionId=itemView.findViewById(R.id.electionNumber);
     }
     public void onBind(ElectionsItem electionsItem){
         electionName.setText(electionsItem.getName());
