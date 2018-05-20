@@ -12,16 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:text="1263 Pacific Ave Kansas City KS"/>
-    <EditText
-        android:id="@+id/cityInput"
-        android:text="Kansas City"
-        android:layout_width="match_parent"
-        android:layout_height="40dp" />
-    <EditText
-        android:id="@+id/stateInput"
-        android:text="KS"
-        android:layout_width="match_parent"
-        android:layout_height="40dp" />
+
     <EditText
         android:id="@+id/electionId"
         android:layout_width="match_parent"

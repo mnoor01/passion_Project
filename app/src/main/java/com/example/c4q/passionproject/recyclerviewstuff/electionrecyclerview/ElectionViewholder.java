@@ -23,8 +23,8 @@ class ElectionViewholder extends RecyclerView.ViewHolder {
         electionId=itemView.findViewById(R.id.electionNumber);
     }
     public void onBind(ElectionsItem electionsItem){
-        electionName.setText(electionsItem.getName());
-        electionDay.setText(electionsItem.getElectionDay());
-        electionId.setText(electionsItem.getId());
+        electionName.setText("name:"+" "+electionsItem.getName());
+        electionDay.setText("election day:"+" "+electionsItem.getElectionDay());
+        electionId.setText("electionID:"+" "+electionsItem.getId());
     }
 }

@@ -56,16 +56,12 @@ public class VoterInfoFragment extends Fragment {
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_voter_info, container, false);
         addressInput = rootView.findViewById(R.id.addressinput);
-        cityInput = rootView.findViewById(R.id.cityInput);
-        stateInput = rootView.findViewById(R.id.stateInput);
         eIdInput = rootView.findViewById(R.id.electionId);
-        electionDay = rootView.findViewById(R.id.electionDay);
         submitButton = rootView.findViewById(R.id.submitButton);
-        electionDay = rootView.findViewById(R.id.electionDay);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setUpRetro(ApiKey.API_KEY, addressInput.getText().toString(), stateInput.getText().toString(), cityInput.getText().toString(), Integer.parseInt(eIdInput.getText().toString()));
+                setUpRetro(ApiKey.API_KEY, addressInput.getText().toString(), Integer.parseInt(eIdInput.getText().toString()));
             }
         });
         // Inflate the layout for this fragment
@@ -79,7 +75,7 @@ public class VoterInfoFragment extends Fragment {
 
     }
 
-    public void setUpRetro(String key, String address, String state, String city, int id) {
+    public void setUpRetro(String key, String address, int id) {
         Retrofit retrofit = new Retrofit.Builder().baseUrl("https://www.googleapis.com/civicinfo/v2/")
                 .addConverterFactory(GsonConverterFactory.create()).build();
         LocalCall service = retrofit.create(LocalCall.class);
