@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <EditText
+        android:id="@+id/addressinputElection"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:text="1263 Pacific Ave Kansas City KS"/>
+    <EditText
+        android:id="@+id/cityInputElection"
+        android:text="Kansas City"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+    <EditText
+        android:id="@+id/stateInputElection"
+        android:text="KS"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+    <EditText
+        android:id="@+id/electionIdElection"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:inputType="number"
+        android:text="2000"/>
+
+    <Button
+        android:id="@+id/submitButton"
+        android:textSize="25sp"
+        android:hint="submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/electionDay"
+        android:layout_width="match_parent"
+        android:layout_height="300dp" />
+
+</LinearLayout>

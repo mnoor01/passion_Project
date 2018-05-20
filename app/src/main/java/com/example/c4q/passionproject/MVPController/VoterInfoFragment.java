@@ -14,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.example.c4q.passionproject.R;
 import com.example.c4q.passionproject.constants.ApiKey;
@@ -22,9 +21,8 @@ import com.example.c4q.passionproject.database.AppDatabase;
 import com.example.c4q.passionproject.models.voterinfo.PollingLocationsItem;
 import com.example.c4q.passionproject.models.voterinfo.VoterResponse;
 import com.example.c4q.passionproject.recyclerviewstuff.CitizenAdapter;
-import com.example.c4q.passionproject.retrofitStuff.LocalCall;
+import com.example.c4q.passionproject.call.LocalCall;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;

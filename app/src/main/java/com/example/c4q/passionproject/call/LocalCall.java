@@ -1,4 +1,4 @@
-package com.example.c4q.passionproject.retrofitStuff;
+package com.example.c4q.passionproject.call;
 
 import com.example.c4q.passionproject.models.elections.ElectionResponse;
 import com.example.c4q.passionproject.models.representatives.RepResponse;
@@ -16,18 +16,14 @@ import retrofit2.http.Query;
 public interface LocalCall {
     @GET("elections")
     Call<ElectionResponse> getElection(
-            @Header("Authorization") String API_KEY,
+            @Query("key") String API_KEY,
             @Query("address") String address,
-            @Query("state") String city,
-            @Query("state") String state,
             @Query("electionId") int electionId);
 
     @GET("representatives")
     Call<RepResponse> getReps(
-            @Header("Authorization") String API_KEY,
+            @Query("key") String API_KEY,
             @Query("address") String address,
-            @Query("city") String city,
-            @Query("state") String state,
             @Query("electionId") int electionId);
     @GET("voterinfo")
     Call<VoterResponse> getVoterInfo(

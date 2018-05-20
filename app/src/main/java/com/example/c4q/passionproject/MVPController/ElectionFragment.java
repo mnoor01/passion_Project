@@ -16,7 +16,7 @@ import com.example.c4q.passionproject.R;
 public class ElectionFragment extends Fragment {
     private int[] image_resources={R.layout.fragment_election,R.layout.fragment_local_rep};
     private Context context;
-    private  LayoutInflater layoutInflater;
+    private View rootView;
 
 
 
@@ -29,8 +29,10 @@ public class ElectionFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        rootView=inflater.inflate(R.layout.fragment_election, container, false);
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_election, container, false);
+        return rootView;
     }
 
 }
