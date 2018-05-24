@@ -33,12 +33,16 @@ class LocalRepViewholder extends RecyclerView.ViewHolder {
     private final String TAG = "LocalRepViewholder";
     public void onBind(OfficialsItem officialsItem){
            if (officialsItem.getAddress()!=null) {
-               name.setText(officialsItem.getName());
-               Picasso.with(itemView.getContext()).load(officialsItem.getPhotoUrl()).into(photoUrl);
-               addressLine1.setText(officialsItem.getAddress().get(0).getLine1());
-               addressLine2.setText(officialsItem.getAddress().get(0).getLine2());
-               localRepState.setText(officialsItem.getAddress().get(0).getCity());
-               localRepZip.setText(officialsItem.getAddress().get(0).getZip());
+               for (int i = 0; i < officialsItem.getAddress().size(); i++) {
+                   name.setText(officialsItem.getName());
+                   Picasso.with(itemView.getContext()).load(officialsItem.getPhotoUrl()).into(photoUrl);
+                   addressLine1.setText(officialsItem.getAddress().get(i).getLine1());
+                   addressLine2.setText(officialsItem.getAddress().get(i).getLine2());
+                   localRepState.setText(officialsItem.getAddress().get(i).getCity());
+                   localRepZip.setText(officialsItem.getAddress().get(i).getZip());
+
+               }
+
            }
 
 

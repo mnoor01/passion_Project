@@ -1,61 +1,75 @@
 package com.example.c4q.passionproject.models.elections;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
 import com.google.gson.annotations.SerializedName;
 
-public class ElectionsItem{
+@Entity(tableName = "electionTable")
+public class ElectionsItem {
+    @PrimaryKey(autoGenerate = true)
+    private long datId;
 
-	@SerializedName("ocdDivisionId")
-	private String ocdDivisionId;
+    public long getDatId() {
+        return datId;
+    }
 
-	@SerializedName("name")
-	private String name;
+    public void setDatId(long datId) {
+        this.datId = datId;
+    }
 
-	@SerializedName("electionDay")
-	private String electionDay;
+    @SerializedName("ocdDivisionId")
+    private String ocdDivisionId;
 
-	@SerializedName("id")
-	private String id;
+    @SerializedName("name")
+    private String name;
 
-	public void setOcdDivisionId(String ocdDivisionId){
-		this.ocdDivisionId = ocdDivisionId;
-	}
+    @SerializedName("electionDay")
+    private String electionDay;
 
-	public String getOcdDivisionId(){
-		return ocdDivisionId;
-	}
+    @SerializedName("id")
+    private String id;
 
-	public void setName(String name){
-		this.name = name;
-	}
+    public void setOcdDivisionId(String ocdDivisionId) {
+        this.ocdDivisionId = ocdDivisionId;
+    }
 
-	public String getName(){
-		return name;
-	}
+    public String getOcdDivisionId() {
+        return ocdDivisionId;
+    }
 
-	public void setElectionDay(String electionDay){
-		this.electionDay = electionDay;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getElectionDay(){
-		return electionDay;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setId(String id){
-		this.id = id;
-	}
+    public void setElectionDay(String electionDay) {
+        this.electionDay = electionDay;
+    }
 
-	public String getId(){
-		return id;
-	}
+    public String getElectionDay() {
+        return electionDay;
+    }
 
-	@Override
- 	public String toString(){
-		return 
-			"ElectionsItem{" + 
-			"ocdDivisionId = '" + ocdDivisionId + '\'' + 
-			",name = '" + name + '\'' + 
-			",electionDay = '" + electionDay + '\'' + 
-			",id = '" + id + '\'' + 
-			"}";
-		}
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        return
+                "ElectionsItem{" +
+                        "ocdDivisionId = '" + ocdDivisionId + '\'' +
+                        ",name = '" + name + '\'' +
+                        ",electionDay = '" + electionDay + '\'' +
+                        ",id = '" + id + '\'' +
+                        "}";
+    }
 }

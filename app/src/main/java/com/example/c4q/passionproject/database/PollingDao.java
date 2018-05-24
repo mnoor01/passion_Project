@@ -4,6 +4,7 @@ import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 
+import com.example.c4q.passionproject.models.elections.ElectionsItem;
 import com.example.c4q.passionproject.models.voterinfo.PollingLocationsItem;
 
 import java.util.List;
@@ -14,7 +15,14 @@ public interface PollingDao {
     @Insert
     void insertPollingSites(List<PollingLocationsItem> pollingLocationsItems);
 
+
     @Query("SELECT * FROM pollingTable")
     List<PollingLocationsItem> loadAll();
+
+    @Insert
+    void insertElectionItems(List<ElectionsItem> electionsItems);
+
+    @Query("SELECT * FROM electionTable")
+    List<ElectionsItem> loadElections();
 
 }

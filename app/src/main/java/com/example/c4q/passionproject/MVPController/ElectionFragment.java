@@ -1,11 +1,13 @@
 package com.example.c4q.passionproject.MVPController;
 
 
+import android.arch.persistence.room.Room;
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,7 @@ import android.widget.Toast;
 import com.example.c4q.passionproject.R;
 import com.example.c4q.passionproject.call.LocalCall;
 import com.example.c4q.passionproject.constants.ApiKey;
+import com.example.c4q.passionproject.database.AppDatabase;
 import com.example.c4q.passionproject.models.elections.ElectionResponse;
 import com.example.c4q.passionproject.models.elections.ElectionsItem;
 import com.example.c4q.passionproject.recyclerviewstuff.electionrecyclerview.ElectionAdapter;
@@ -29,6 +32,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -90,6 +95,17 @@ public class ElectionFragment extends Fragment {
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(rootView.getContext());
                     recyclerView.setAdapter(adapter);
                     recyclerView.setLayoutManager(linearLayoutManager);
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            AppDatabase database= Room.databaseBuilder(rootView.getContext(),AppDatabase.class,"passionDb").build();
+                            database.pollingDao().insertElectionItems(electionsItemList);
+                            List<ElectionsItem> electionsItems=database.pollingDao().loadElections();
+                            Log.d(TAG, "run:elections "+electionsItems.size());
+                        }
+                    }).start();
+
+
                 }
                 else {
                     Toast.makeText(getActivity(), "bad address", Toast.LENGTH_LONG).show();

@@ -5,7 +5,7 @@ import android.arch.persistence.room.Entity;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
-@Entity(tableName = "electionTable")
+
 public class ElectionResponse{
 
 	private String kind;
