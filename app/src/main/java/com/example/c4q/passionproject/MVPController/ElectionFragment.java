@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.c4q.passionproject.R;
 import com.example.c4q.passionproject.call.LocalCall;
@@ -38,7 +39,7 @@ public class ElectionFragment extends Fragment {
     private View rootView;
     private EditText address;
     private EditText electionDay;
-    private EditText eledtionId;
+    private EditText electionId;
     List<ElectionsItem> electionsItemList;
     private Button submitButton;
 
@@ -53,12 +54,18 @@ public class ElectionFragment extends Fragment {
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_election, container, false);
         address=rootView.findViewById(R.id.addressinputElection);
-        eledtionId=rootView.findViewById(R.id.electionIdElection);
+        electionId=rootView.findViewById(R.id.electionIdElection);
         submitButton=rootView.findViewById(R.id.submitButtonElection);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setUpRetro(ApiKey.API_KEY,address.getText().toString(),Integer.parseInt(eledtionId.getText().toString()));
+                if (address!= null&&electionId!=null) {
+                    setUpRetro(ApiKey.API_KEY, address.getText().toString(), Integer.parseInt(electionId.getText().toString()));
+                }
+                else {
+                    Toast.makeText(rootView.getContext(),"invalid input",Toast.LENGTH_LONG).show();
+
+                }
             }
         });
         ;
@@ -76,12 +83,17 @@ public class ElectionFragment extends Fragment {
         electionCall.enqueue(new Callback<ElectionResponse>() {
             @Override
             public void onResponse(Call<ElectionResponse> call, Response<ElectionResponse> response) {
-                electionsItemList=response.body().getElections();
-                RecyclerView recyclerView=rootView.findViewById(R.id.electionRv);
-                ElectionAdapter adapter= new ElectionAdapter(electionsItemList);
-                LinearLayoutManager linearLayoutManager=new LinearLayoutManager(rootView.getContext());
-                recyclerView.setAdapter(adapter);
-                recyclerView.setLayoutManager(linearLayoutManager);
+                if (response.isSuccessful()) {
+                    electionsItemList = response.body().getElections();
+                    RecyclerView recyclerView = rootView.findViewById(R.id.electionRv);
+                    ElectionAdapter adapter = new ElectionAdapter(electionsItemList);
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(rootView.getContext());
+                    recyclerView.setAdapter(adapter);
+                    recyclerView.setLayoutManager(linearLayoutManager);
+                }
+                else {
+                    Toast.makeText(getActivity(), "bad address", Toast.LENGTH_LONG).show();
+                }
 
             }
 

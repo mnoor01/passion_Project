@@ -8,12 +8,14 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.c4q.passionproject.R;
 import com.example.c4q.passionproject.constants.ApiKey;
@@ -58,6 +60,9 @@ public class VoterInfoFragment extends Fragment {
         addressInput = rootView.findViewById(R.id.addressinput);
         eIdInput = rootView.findViewById(R.id.electionId);
         submitButton = rootView.findViewById(R.id.submitButton);
+        if (TextUtils.isEmpty(addressInput.getText())||TextUtils.isEmpty(eIdInput.getText())){
+            Toast.makeText(rootView.getContext(),"invalid input",Toast.LENGTH_LONG).show();
+        }
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,31 +91,37 @@ public class VoterInfoFragment extends Fragment {
             public void onResponse(Call<VoterResponse> call, Response<VoterResponse> response) {
                 final List<PollingLocationsItem> pollingLocationsItems;
 
-                pollingLocationsItems = response.body().getPollingLocations();
-                RecyclerView recyclerView=rootView.findViewById(R.id.electionDay);
-                adapter= new CitizenAdapter(pollingLocationsItems);
-                LinearLayoutManager linearLayoutManager= new LinearLayoutManager(rootView.getContext());
-                recyclerView.setAdapter(adapter);
-                recyclerView.setLayoutManager(linearLayoutManager);
+                if (response.isSuccessful()) {
+
+                    pollingLocationsItems = response.body().getPollingLocations();
+                    RecyclerView recyclerView = rootView.findViewById(R.id.electionDay);
+                    adapter = new CitizenAdapter(pollingLocationsItems);
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(rootView.getContext());
+                    recyclerView.setAdapter(adapter);
+                    recyclerView.setLayoutManager(linearLayoutManager);
 
 
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        AppDatabase db = Room.databaseBuilder(rootView.getContext(), AppDatabase.class, "PassionDb").build();
-                        db.pollingDao().insertPollingSites(pollingLocationsItems);
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            AppDatabase db = Room.databaseBuilder(rootView.getContext(), AppDatabase.class, "PassionDb").build();
+                            db.pollingDao().insertPollingSites(pollingLocationsItems);
 
-                    }
-                }).start();
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        AppDatabase db = Room.databaseBuilder(rootView.getContext(), AppDatabase.class, "PassionDb").build();
-                        List<PollingLocationsItem> locationsItems = db.pollingDao().loadAll();
-                        Log.d(TAG, "run: "+ locationsItems.size());
+                        }
+                    }).start();
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            AppDatabase db = Room.databaseBuilder(rootView.getContext(), AppDatabase.class, "PassionDb").build();
+                            List<PollingLocationsItem> locationsItems = db.pollingDao().loadAll();
+                            Log.d(TAG, "run: " + locationsItems.size());
 
-                    }
-                }).start();
+                        }
+                    }).start();
+                }
+                else {
+                    Toast.makeText(getActivity(), "bad address", Toast.LENGTH_LONG).show();
+                }
 
 
             }
