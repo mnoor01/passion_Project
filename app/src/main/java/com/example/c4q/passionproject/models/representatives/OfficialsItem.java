@@ -1,99 +1,113 @@
 package com.example.c4q.passionproject.models.representatives;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class OfficialsItem{
+@Entity(tableName = "repTable")
+public class OfficialsItem {
+    @PrimaryKey(autoGenerate = true)
+    private long officialsDataId;
 
-	@SerializedName("photoUrl")
-	private String photoUrl;
+    public long getOfficialsDataId() {
+        return officialsDataId;
+    }
 
-	@SerializedName("urls")
-	private List<String> urls;
+    public void setOfficialsDataId(long officialsDataId) {
+        this.officialsDataId = officialsDataId;
+    }
 
-	@SerializedName("address")
-	private List<AddressItem> address;
+    @SerializedName("photoUrl")
+    private String photoUrl;
 
-	@SerializedName("channels")
-	private List<ChannelsItem> channels;
+    @SerializedName("urls")
+    private List<String> urls;
 
-	@SerializedName("name")
-	private String name;
+    @SerializedName("address")
+    private List<AddressItem> address;
 
-	@SerializedName("phones")
-	private List<String> phones;
+    @SerializedName("channels")
+    private List<ChannelsItem> channels;
 
-	@SerializedName("party")
-	private String party;
+    @SerializedName("name")
+    private String name;
 
-	public void setPhotoUrl(String photoUrl){
-		this.photoUrl = photoUrl;
-	}
+    @SerializedName("phones")
+    private List<String> phones;
 
-	public String getPhotoUrl(){
-		return photoUrl;
-	}
+    @SerializedName("party")
+    private String party;
 
-	public void setUrls(List<String> urls){
-		this.urls = urls;
-	}
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
+    }
 
-	public List<String> getUrls(){
-		return urls;
-	}
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
 
-	public void setAddress(List<AddressItem> address){
-		this.address = address;
-	}
+    public void setUrls(List<String> urls) {
+        this.urls = urls;
+    }
 
-	public List<AddressItem> getAddress(){
-		return address;
-	}
+    public List<String> getUrls() {
+        return urls;
+    }
 
-	public void setChannels(List<ChannelsItem> channels){
-		this.channels = channels;
-	}
+    public void setAddress(List<AddressItem> address) {
+        this.address = address;
+    }
 
-	public List<ChannelsItem> getChannels(){
-		return channels;
-	}
+    public List<AddressItem> getAddress() {
+        return address;
+    }
 
-	public void setName(String name){
-		this.name = name;
-	}
+    public void setChannels(List<ChannelsItem> channels) {
+        this.channels = channels;
+    }
 
-	public String getName(){
-		return name;
-	}
+    public List<ChannelsItem> getChannels() {
+        return channels;
+    }
 
-	public void setPhones(List<String> phones){
-		this.phones = phones;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public List<String> getPhones(){
-		return phones;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setParty(String party){
-		this.party = party;
-	}
+    public void setPhones(List<String> phones) {
+        this.phones = phones;
+    }
 
-	public String getParty(){
-		return party;
-	}
+    public List<String> getPhones() {
+        return phones;
+    }
 
-	@Override
- 	public String toString(){
-		return 
-			"OfficialsItem{" + 
-			"photoUrl = '" + photoUrl + '\'' + 
-			",urls = '" + urls + '\'' + 
-			",address = '" + address + '\'' + 
-			",channels = '" + channels + '\'' + 
-			",name = '" + name + '\'' + 
-			",phones = '" + phones + '\'' + 
-			",party = '" + party + '\'' + 
-			"}";
-		}
+    public void setParty(String party) {
+        this.party = party;
+    }
+
+    public String getParty() {
+        return party;
+    }
+
+    @Override
+    public String toString() {
+        return
+                "OfficialsItem{" +
+                        "photoUrl = '" + photoUrl + '\'' +
+                        ",urls = '" + urls + '\'' +
+                        ",address = '" + address + '\'' +
+                        ",channels = '" + channels + '\'' +
+                        ",name = '" + name + '\'' +
+                        ",phones = '" + phones + '\'' +
+                        ",party = '" + party + '\'' +
+                        "}";
+    }
 }

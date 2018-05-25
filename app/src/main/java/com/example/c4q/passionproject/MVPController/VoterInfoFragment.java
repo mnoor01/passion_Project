@@ -2,6 +2,7 @@ package com.example.c4q.passionproject.MVPController;
 
 
 import android.arch.persistence.room.Room;
+import android.arch.persistence.room.migration.Migration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -47,6 +48,7 @@ public class VoterInfoFragment extends Fragment {
     private RecyclerView electionDay;
     private Button submitButton;
     private CitizenAdapter adapter;
+    private List<PollingLocationsItem> pollingLocationsItems;
 
     public VoterInfoFragment() {
         // Required empty public constructor
@@ -89,7 +91,7 @@ public class VoterInfoFragment extends Fragment {
         voterInfo.enqueue(new Callback<VoterResponse>() {
             @Override
             public void onResponse(Call<VoterResponse> call, Response<VoterResponse> response) {
-                final List<PollingLocationsItem> pollingLocationsItems;
+//                final List<PollingLocationsItem> pollingLocationsItems;
 
                 if (response.isSuccessful()) {
 
@@ -104,20 +106,15 @@ public class VoterInfoFragment extends Fragment {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            AppDatabase db = Room.databaseBuilder(rootView.getContext(), AppDatabase.class, "PassionDb").build();
-                            db.pollingDao().insertPollingSites(pollingLocationsItems);
-
-                        }
-                    }).start();
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            AppDatabase db = Room.databaseBuilder(rootView.getContext(), AppDatabase.class, "PassionDb").build();
+                            AppDatabase db = Room.databaseBuilder(rootView.getContext(), AppDatabase.class, "PassionDb").addMigrations(AppDatabase.MIGRATION_1_2).build();
+                            db.pollingDao().insertPollingLocationSites(pollingLocationsItems);
                             List<PollingLocationsItem> locationsItems = db.pollingDao().loadAll();
+                            db.beginTransaction();
                             Log.d(TAG, "run: " + locationsItems.size());
 
                         }
                     }).start();
+
                 }
                 else {
                     Toast.makeText(getActivity(), "bad address", Toast.LENGTH_LONG).show();

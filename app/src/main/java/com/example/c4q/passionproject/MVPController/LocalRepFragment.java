@@ -1,6 +1,7 @@
 package com.example.c4q.passionproject.MVPController;
 
 
+import android.arch.persistence.room.Room;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import com.example.c4q.passionproject.R;
 import com.example.c4q.passionproject.call.LocalCall;
 import com.example.c4q.passionproject.constants.ApiKey;
+import com.example.c4q.passionproject.database.AppDatabase;
 import com.example.c4q.passionproject.models.representatives.OfficesItem;
 import com.example.c4q.passionproject.models.representatives.OfficialsItem;
 import com.example.c4q.passionproject.models.representatives.RepResponse;
@@ -88,6 +90,15 @@ public class LocalRepFragment extends Fragment {
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(rootView.getContext());
                     recyclerView.setLayoutManager(linearLayoutManager);
                     recyclerView.setAdapter(adapter);
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+//                            AppDatabase database= Room.databaseBuilder(rootView.getContext(),AppDatabase.class,"passionDb").build();
+//                            database.pollingDao().insertLocalReps(officialsItemList);
+//                            List<OfficialsItem> officialsItems=database.pollingDao().loadReps();
+//                            Log.d(TAG, "run: local rep"+ officialsItems.size());
+                        }
+                    }).start();
                 } else {
                     Toast.makeText(getActivity(), "bad address", Toast.LENGTH_LONG).show();
                 }
