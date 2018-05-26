@@ -8,6 +8,7 @@
     android:paddingRight="16dp"
     android:paddingTop="16dp"
     android:paddingBottom="16dp"
+    android:background="#7CFC00"
     tools:context="com.example.c4q.passionproject.MainActivity">
     <android.support.design.widget.TabLayout
         android:id="@+id/sliding_tabs"

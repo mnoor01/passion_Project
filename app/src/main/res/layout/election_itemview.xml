@@ -14,6 +14,7 @@
         android:layout_height="match_parent">
     <TextView
         android:id="@+id/electionName"
+        android:textSize="20sp"
         android:layout_margin="10dp"
         android:textColor="#00FFFF"
         android:layout_width="match_parent"
@@ -25,6 +26,7 @@
         android:layout_marginTop="20dp"/>
     <TextView
         android:id="@+id/electionDayItem"
+        android:textSize="20sp"
         android:textColor="#00FFFF"
         app:layout_constraintTop_toBottomOf="@id/electionName"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,6 +39,7 @@
     <TextView
         app:layout_constraintStart_toStartOf="parent"
         android:textColor="#00FFFF"
+        android:textSize="20sp"
         app:layout_constraintTop_toBottomOf="@id/electionDayItem"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

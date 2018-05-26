@@ -28,12 +28,9 @@ public class LocalRepAdapter extends RecyclerView.Adapter<LocalRepViewholder> {
 
     @Override
     public void onBindViewHolder(@NonNull LocalRepViewholder holder, int position) {
-        if (officialsItems.get(position).getName()=="Donald J.Trump"|| officialsItems.get(position).getName()=="Mike Pence"){
-            officialsItems.remove(position);
-        }
-        else {
+
             holder.onBind(officialsItems.get(position));
-        }
+
 
 
     }

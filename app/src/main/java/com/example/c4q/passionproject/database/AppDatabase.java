@@ -10,7 +10,7 @@ import android.support.annotation.NonNull;
 import com.example.c4q.passionproject.models.elections.ElectionsItem;
 import com.example.c4q.passionproject.models.representatives.OfficialsItem;
 import com.example.c4q.passionproject.models.voterinfo.PollingLocationsItem;
-@TypeConverters(value = Converter.class)
+@TypeConverters( value = Converter.class)
 @Database(entities = {PollingLocationsItem.class, ElectionsItem.class}, version = 2,exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {// this class will represent the database
    public static final Migration MIGRATION_1_2=new Migration(1,2) {

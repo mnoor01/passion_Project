@@ -106,11 +106,10 @@ public class VoterInfoFragment extends Fragment {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            AppDatabase db = Room.databaseBuilder(rootView.getContext(), AppDatabase.class, "PassionDb").addMigrations(AppDatabase.MIGRATION_1_2).build();
+                            AppDatabase db = Room.databaseBuilder(rootView.getContext(), AppDatabase.class, "PassionDb").fallbackToDestructiveMigration().build();
                             db.pollingDao().insertPollingLocationSites(pollingLocationsItems);
                             List<PollingLocationsItem> locationsItems = db.pollingDao().loadAll();
-                            db.beginTransaction();
-                            Log.d(TAG, "run: " + locationsItems.size());
+                            Log.d(TAG, "run:Reps " + locationsItems.size());
 
                         }
                     }).start();

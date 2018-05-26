@@ -1,8 +1,12 @@
 package com.example.c4q.passionproject.models.representatives;
 
+import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.TypeConverter;
+import android.arch.persistence.room.TypeConverters;
 
+import com.example.c4q.passionproject.database.Converter;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -19,7 +23,6 @@ public class OfficialsItem {
     public void setOfficialsDataId(long officialsDataId) {
         this.officialsDataId = officialsDataId;
     }
-
     @SerializedName("photoUrl")
     private String photoUrl;
 
