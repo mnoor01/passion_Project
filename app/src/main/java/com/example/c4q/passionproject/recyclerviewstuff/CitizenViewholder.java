@@ -33,13 +33,13 @@ public class CitizenViewholder extends RecyclerView.ViewHolder {
 
     }
     public void onBind(PollingLocationsItem locationsItem){
-        addressName.setText(locationsItem.getAddress().getLocationName());
-        addressLine1.setText(locationsItem.getAddress().getLine1());
+        addressName.setText("Location name: "+ locationsItem.getAddress().getLocationName());
+        addressLine1.setText("Address:"+locationsItem.getAddress().getLine1());
         addressLine2.setText(locationsItem.getAddress().getLine2());
         addressLine3.setText(locationsItem.getAddress().getLine3());
-        addresscity.setText(locationsItem.getAddress().getCity());
-        addressstate.setText(locationsItem.getAddress().getState());
-        addressZip.setText(locationsItem.getAddress().getZip());
+        addresscity.setText("City: "+locationsItem.getAddress().getCity());
+        addressstate.setText("State: "+locationsItem.getAddress().getState());
+        addressZip.setText("Zip: "+locationsItem.getAddress().getZip());
 
 
 
