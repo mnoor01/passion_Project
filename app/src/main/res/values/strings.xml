@@ -6,4 +6,5 @@
     <string name="welcome_message">Welcome</string>
     <string name="elections">Elections</string>
     <string name="local_representatives">local representatives</string>
+    <string name="vinfo">voter info</string>
 </resources>

@@ -1,15 +1,15 @@
 package com.example.c4q.passionproject.models.elections;
 
+import android.arch.persistence.room.Entity;
+
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
 public class ElectionResponse{
 
-	@SerializedName("kind")
 	private String kind;
 
-	@SerializedName("elections")
 	private List<ElectionsItem> elections;
 
 	public void setKind(String kind){

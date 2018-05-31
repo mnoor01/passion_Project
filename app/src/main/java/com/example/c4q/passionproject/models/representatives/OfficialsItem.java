@@ -1,99 +1,116 @@
 package com.example.c4q.passionproject.models.representatives;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.arch.persistence.room.TypeConverter;
+import android.arch.persistence.room.TypeConverters;
+
+import com.example.c4q.passionproject.database.Converter;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class OfficialsItem{
+@Entity(tableName = "repTable")
+public class OfficialsItem {
+    @PrimaryKey(autoGenerate = true)
+    private long officialsDataId;
 
-	@SerializedName("photoUrl")
-	private String photoUrl;
+    public long getOfficialsDataId() {
+        return officialsDataId;
+    }
 
-	@SerializedName("urls")
-	private List<String> urls;
+    public void setOfficialsDataId(long officialsDataId) {
+        this.officialsDataId = officialsDataId;
+    }
+    @SerializedName("photoUrl")
+    private String photoUrl;
 
-	@SerializedName("address")
-	private List<AddressItem> address;
+    @SerializedName("urls")
+    private List<String> urls;
 
-	@SerializedName("channels")
-	private List<ChannelsItem> channels;
+    @SerializedName("address")
+    private List<AddressItem> address;
 
-	@SerializedName("name")
-	private String name;
+    @SerializedName("channels")
+    private List<ChannelsItem> channels;
 
-	@SerializedName("phones")
-	private List<String> phones;
+    @SerializedName("name")
+    private String name;
 
-	@SerializedName("party")
-	private String party;
+    @SerializedName("phones")
+    private List<String> phones;
 
-	public void setPhotoUrl(String photoUrl){
-		this.photoUrl = photoUrl;
-	}
+    @SerializedName("party")
+    private String party;
 
-	public String getPhotoUrl(){
-		return photoUrl;
-	}
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
+    }
 
-	public void setUrls(List<String> urls){
-		this.urls = urls;
-	}
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
 
-	public List<String> getUrls(){
-		return urls;
-	}
+    public void setUrls(List<String> urls) {
+        this.urls = urls;
+    }
 
-	public void setAddress(List<AddressItem> address){
-		this.address = address;
-	}
+    public List<String> getUrls() {
+        return urls;
+    }
 
-	public List<AddressItem> getAddress(){
-		return address;
-	}
+    public void setAddress(List<AddressItem> address) {
+        this.address = address;
+    }
 
-	public void setChannels(List<ChannelsItem> channels){
-		this.channels = channels;
-	}
+    public List<AddressItem> getAddress() {
+        return address;
+    }
 
-	public List<ChannelsItem> getChannels(){
-		return channels;
-	}
+    public void setChannels(List<ChannelsItem> channels) {
+        this.channels = channels;
+    }
 
-	public void setName(String name){
-		this.name = name;
-	}
+    public List<ChannelsItem> getChannels() {
+        return channels;
+    }
 
-	public String getName(){
-		return name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setPhones(List<String> phones){
-		this.phones = phones;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public List<String> getPhones(){
-		return phones;
-	}
+    public void setPhones(List<String> phones) {
+        this.phones = phones;
+    }
 
-	public void setParty(String party){
-		this.party = party;
-	}
+    public List<String> getPhones() {
+        return phones;
+    }
 
-	public String getParty(){
-		return party;
-	}
+    public void setParty(String party) {
+        this.party = party;
+    }
 
-	@Override
- 	public String toString(){
-		return 
-			"OfficialsItem{" + 
-			"photoUrl = '" + photoUrl + '\'' + 
-			",urls = '" + urls + '\'' + 
-			",address = '" + address + '\'' + 
-			",channels = '" + channels + '\'' + 
-			",name = '" + name + '\'' + 
-			",phones = '" + phones + '\'' + 
-			",party = '" + party + '\'' + 
-			"}";
-		}
+    public String getParty() {
+        return party;
+    }
+
+    @Override
+    public String toString() {
+        return
+                "OfficialsItem{" +
+                        "photoUrl = '" + photoUrl + '\'' +
+                        ",urls = '" + urls + '\'' +
+                        ",address = '" + address + '\'' +
+                        ",channels = '" + channels + '\'' +
+                        ",name = '" + name + '\'' +
+                        ",phones = '" + phones + '\'' +
+                        ",party = '" + party + '\'' +
+                        "}";
+    }
 }
