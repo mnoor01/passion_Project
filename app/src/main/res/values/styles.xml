@@ -7,8 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-<<<<<<< HEAD
-    <style name="alert" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="alert" parent="Theme.AppCompat.Light.DarkActionBar"/>
 =======
     <style name="alertDialog" parent="Theme.AppCompat.Dialog.Alert">
 >>>>>>> 245d2214cf8fb48f7f23a6ea59252d60e7bdd49f

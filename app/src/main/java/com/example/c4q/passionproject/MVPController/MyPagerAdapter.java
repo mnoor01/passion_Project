@@ -62,7 +62,7 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return context.getString(R.string.elections);
             case 1:
-                return context.getString(R.string.local_representatives);
+                return context.getString(R.string.local_Reps);
             case 2:
                 return context.getString(R.string.vinfo);
 

@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                         getSupportActionBar().setBackgroundDrawable(getDrawable(R.drawable.congree_icon));
                         break;
                     case 2:
-                        setActionBarTitle("voter info");
+                        setActionBarTitle("Polling sites");
                         getSupportActionBar().setBackgroundDrawable(getDrawable(R.drawable.info_icon));
                         break;
 
@@ -72,3 +72,4 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(title);
     }
 }
+//pulling

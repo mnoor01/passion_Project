@@ -11,6 +11,7 @@
         android:id="@+id/addressinputLocalRep"
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:hint="Address"
         android:text="1263 Pacific Ave Kansas City KS"/>
 
 
@@ -19,6 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:inputType="number"
+        android:hint="electionid"
         android:text="2000"/>
 
     <Button
