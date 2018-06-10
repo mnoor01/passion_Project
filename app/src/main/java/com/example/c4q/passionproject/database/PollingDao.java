@@ -24,9 +24,9 @@ public interface PollingDao {
     void insertElectionItems(List<ElectionsItem> electionsItems);
 
 
-//    @Query("SELECT * FROM repTable")
-//    List<OfficialsItem> loadReps();
-//    @Insert
-//    void insertLocalReps(List<OfficialsItem> officialsItems);
+    @Query("SELECT * FROM repTable")
+    List<OfficialsItem> loadReps();
+    @Insert
+    void insertLocalReps(List<OfficialsItem> officialsItems);
 
 }

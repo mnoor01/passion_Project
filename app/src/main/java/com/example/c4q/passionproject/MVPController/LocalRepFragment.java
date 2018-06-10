@@ -93,10 +93,10 @@ public class LocalRepFragment extends Fragment {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-//                            AppDatabase database= Room.databaseBuilder(rootView.getContext(),AppDatabase.class,"passionDb").build();
-//                            database.pollingDao().insertLocalReps(officialsItemList);
-//                            List<OfficialsItem> officialsItems=database.pollingDao().loadReps();
-//                            Log.d(TAG, "run: local rep"+ officialsItems.size());
+                            AppDatabase database= AppDatabase.getInstance(getContext());
+                            database.pollingDao().insertLocalReps(officialsItemList);
+                            List<OfficialsItem> officialsItems=database.pollingDao().loadReps();
+                            Log.d(TAG, "run: local rep"+ officialsItems.size());
                         }
                     }).start();
                 } else {

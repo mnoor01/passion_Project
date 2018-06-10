@@ -8,6 +8,9 @@ import android.os.Bundle;
 import com.example.c4q.passionproject.MVPController.AlertDialogFragment;
 import com.example.c4q.passionproject.MVPController.MyPagerAdapter;
 
+/**
+ * For maps simply look up implicit intent and pass in the address
+ */
 public class MainActivity extends AppCompatActivity {
     private MyPagerAdapter pagerAdapter;
     private ViewPager viewPager;

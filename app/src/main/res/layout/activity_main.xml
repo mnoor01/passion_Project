@@ -8,10 +8,11 @@
     android:paddingRight="16dp"
     android:paddingTop="16dp"
     android:paddingBottom="16dp"
-    android:background="#7CFC00"
+    android:background="#fffff0"
     tools:context="com.example.c4q.passionproject.MainActivity">
     <android.support.design.widget.TabLayout
         android:id="@+id/sliding_tabs"
+        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:tabMode="fixed" />
@@ -25,7 +26,7 @@
         android:id="@+id/main_view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/sliding_tabs"/>
+        android:layout_above="@id/sliding_tabs"/>
     <!--</FrameLayout>-->
 
 

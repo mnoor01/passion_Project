@@ -106,7 +106,7 @@ public class VoterInfoFragment extends Fragment {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            AppDatabase db = Room.databaseBuilder(rootView.getContext(), AppDatabase.class, "PassionDb").fallbackToDestructiveMigration().build();
+                            AppDatabase db = AppDatabase.getInstance(getContext());
                             db.pollingDao().insertPollingLocationSites(pollingLocationsItems);
                             List<PollingLocationsItem> locationsItems = db.pollingDao().loadAll();
                             Log.d(TAG, "run:Reps " + locationsItems.size());

@@ -23,25 +23,19 @@ public class OfficialsItem {
     public void setOfficialsDataId(long officialsDataId) {
         this.officialsDataId = officialsDataId;
     }
-    @SerializedName("photoUrl")
+
     private String photoUrl;
 
-    @SerializedName("urls")
     private List<String> urls;
 
-    @SerializedName("address")
     private List<AddressItem> address;
 
-    @SerializedName("channels")
     private List<ChannelsItem> channels;
 
-    @SerializedName("name")
     private String name;
 
-    @SerializedName("phones")
     private List<String> phones;
 
-    @SerializedName("party")
     private String party;
 
     public void setPhotoUrl(String photoUrl) {

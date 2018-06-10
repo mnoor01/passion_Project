@@ -98,7 +98,7 @@ public class ElectionFragment extends Fragment {
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            AppDatabase database= Room.databaseBuilder(rootView.getContext(),AppDatabase.class,"passionDb").fallbackToDestructiveMigration().build();
+                            AppDatabase database= AppDatabase.getInstance(getContext());
                             database.pollingDao().insertElectionItems(electionsItemList);
                             List<ElectionsItem> electionsItems=database.pollingDao().loadElections();
                             Log.d(TAG, "run:elections "+electionsItems.size());

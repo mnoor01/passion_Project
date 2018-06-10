@@ -60,9 +60,9 @@ public class Converter {
     }
     @TypeConverter
     public String fromChannelToString(ChannelsItem channelsItem){
-        if (channelsItem==null){
-            return null;
-        }
+//        if (channelsItem==null){
+//            return null;
+//        }
         Gson gson= new Gson();
         Type type= new TypeToken<ChannelsItem>(){}.getType();
         String json=gson.toJson(channelsItem,type);
@@ -70,10 +70,10 @@ public class Converter {
     }
     @TypeConverter
     public ChannelsItem fromStringToChannelSolo(String channelString){
-        if (channelString== null){
-            return null;
-
-        }
+//        if (channelString== null){
+//            return null;
+//
+//        }
         Type type= new TypeToken<ChannelsItem>(){}.getType();
         Gson gson= new Gson();
 
@@ -82,28 +82,6 @@ public class Converter {
 
     }
 
-    @TypeConverter
-    public String fromChannelListToString(List<ChannelsItem> channelsItems) {
-        if (channelsItems==null){
-            return null;
-        }
-        Gson gson = new Gson();
-        Type type= new TypeToken<List<ChannelsItem>>(){}.getType();
-        String json=gson.toJson(channelsItems,type);
-        return json;
-    }
-
-    @TypeConverter
-    public List<ChannelsItem> fromStringToChannel(String channels) {
-        if (channels==null){
-            return null;
-        }
-        Type type = new TypeToken<List<ChannelsItem>>() {
-        }.getType();
-        Gson gson= new Gson();
-        List<ChannelsItem> channelsItems=gson.fromJson(channels,type);
-        return channelsItems;
-    }
 
 
     @TypeConverter

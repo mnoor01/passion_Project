@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.c4q.passionproject.MainActivity;
 import com.example.c4q.passionproject.R;
 import com.example.c4q.passionproject.models.representatives.OfficialsItem;
 import com.squareup.picasso.Picasso;
@@ -22,6 +23,7 @@ class LocalRepViewholder extends RecyclerView.ViewHolder {
     private TextView localRepCity;
     private TextView localRepState;
     private TextView localRepZip;
+    private TextView localRepPhone;
     private TextView localRepParty;
     public LocalRepViewholder(View itemView) {
         super(itemView);
@@ -33,6 +35,7 @@ class LocalRepViewholder extends RecyclerView.ViewHolder {
         localRepCity=itemView.findViewById(R.id.addressRepCity);
         localRepState=itemView.findViewById(R.id.addressRepState);
         localRepZip=itemView.findViewById(R.id.addressRepZip);
+        localRepPhone=itemView.findViewById(R.id.addressRepPhone);
 
 
     }
@@ -48,31 +51,34 @@ class LocalRepViewholder extends RecyclerView.ViewHolder {
                    localRepCity.setText("City: "+ officialsItem.getAddress().get(i).getCity());
                    localRepState.setText("State:" + officialsItem.getAddress().get(i).getState());
                    localRepZip.setText("Zip: " + officialsItem.getAddress().get(i).getZip());
+                   localRepPhone.setText("phone: "+officialsItem.getPhones() );
 
                }
-               itemView.setOnClickListener(new View.OnClickListener() {
-                   @Override
-                   public void onClick(View v) {
-                       Uri gmmIntentUri = Uri.parse("google.streetview:cbll=46.414382,10.013988");
-                       Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-                       mapIntent.putExtra("address",addressLine1.getText()+" "+" "+addressLine2.getText());
-                       try {
-                           itemView.getContext().startActivity(mapIntent);
-                       }
-                       catch (ActivityNotFoundException e){
-                           try
-                           {
-                               Intent unrestrictedIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(gmmIntentUri.toString()));
-                               itemView.getContext().startActivity(unrestrictedIntent);
-                           }
-                           catch(ActivityNotFoundException innerEx)
-                           {
-                               Toast.makeText(itemView.getContext(), "Please install a maps application", Toast.LENGTH_LONG).show();
-                           }
-                       }
-
-                   }
-               });
+//               itemView.setOnClickListener(new View.OnClickListener() {
+//                   @Override
+//                   public void onClick(View v) {
+//                       Uri gmmIntentUri = Uri.parse("google.streetview:cbll=46.414382,10.013988");
+//                       Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+//
+//                       MainActivity mainActivity = ((MainActivity) itemView.getContext());
+//                       mapIntent.putExtra("address",addressLine1.getText()+" "+" "+addressLine2.getText());
+//                       try {
+//                           mainActivity.startActivity(mapIntent);
+//                       }
+//                       catch (ActivityNotFoundException e){
+//                           try
+//                           {
+//                               Intent unrestrictedIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(gmmIntentUri.toString()));
+//                               mainActivity.startActivity(unrestrictedIntent);
+//                           }
+//                           catch(ActivityNotFoundException innerEx)
+//                           {
+//                               Toast.makeText(mainActivity, "Please install a maps application", Toast.LENGTH_LONG).show();
+//                           }
+//                       }
+//
+//                   }
+//               });
 
            }
 
